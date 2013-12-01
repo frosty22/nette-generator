@@ -1,0 +1,24 @@
+{
+	"name": "frosty22/nette-generator",
+	"type": "library",
+	"description": "Nette generator of presenters, controls, entities, etc.",
+	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"authors": [
+		{
+			"name": "Vít Ledvinka",
+			"homepage": "http://www.frosty22.cz"
+		}
+	],
+	"require": {
+		"php": ">= 5.3.0",
+		"nette/nette": "2.*"
+	},
+	"autoload": {
+		"psr-0": {
+			"NetteGenerator" : "src/"
+		},
+		"classmap": [
+			"src/NetteGenerator/exceptions.php"
+		]
+	}
+}
