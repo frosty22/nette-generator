@@ -39,6 +39,12 @@ abstract class AbstractGenerator {
 
 
 	/**
+	 * @var array
+	 */
+	protected $arguments = array();
+
+
+	/**
 	 * @param array $settings
 	 * @param array $author
 	 */
@@ -69,8 +75,20 @@ abstract class AbstractGenerator {
 	 */
 	public function addProperty($name, $type, $factory = NULL)
 	{
-		if (mb_substr($type, 0, 1) !== "\\") $type = "\\" . $type;
+		if (mb_substr($type, 0, 1) !== "\\" && $type != "") $type = "\\" . $type;
 		$this->properties[$name] = $factory ? array($type, $factory) : $type;
+		return $this;
+	}
+
+
+	/**
+	 * @param string $name
+	 * @param null|string $type
+	 * @return $this
+	 */
+	public function addConstructArgument($name, $type = NULL)
+	{
+		$this->arguments[$name] = $type;
 		return $this;
 	}
 
@@ -121,7 +139,10 @@ abstract class AbstractGenerator {
 	{
 		$replacements = array();
 		foreach ($this->settings as $key => $value) {
-			if (is_string($value)) $replacements["{{$key}}"] = $value;
+			if (is_string($value)) {
+				$value = str_replace('\\', '/', $value);
+				$replacements["{{$key}}"] = $value;
+			}
 		}
 
 		$dir = str_replace(array_keys($replacements), $replacements, $this->dir);

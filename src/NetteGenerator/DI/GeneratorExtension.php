@@ -22,10 +22,12 @@ class GeneratorExtension extends \Nette\Config\CompilerExtension
 			'email'		=> 'john@doe.com'
 		),
 		'commands'	=> array(
-			'presenter'	=> 'NetteGenerator\Command\PresenterCommand'
+			'presenter'	=> 'NetteGenerator\Command\PresenterCommand',
+			'query'		=> 'NetteGenerator\Command\QueryCommand'
 		),
 		'generators' => array(
-			'presenter' => 'NetteGenerator\Generator\PresenterGenerator'
+			'presenter' => 'NetteGenerator\Generator\PresenterGenerator',
+			'query'		=> 'NetteGenerator\Generator\QueryGenerator'
 		),
 		'config' => array(
 			'presenter' => array(
@@ -38,6 +40,13 @@ class GeneratorExtension extends \Nette\Config\CompilerExtension
 				'module'			=> 'FrontModule',
 				'modulePrefix'		=> 'App\\',
 				'secured'			=> FALSE
+			),
+			'query'		=> array(
+				'name'				=> 'TestQuery',
+				'namespace'			=> 'Test',
+				'prefix'			=> 'App\\',
+				'extend'			=> '\Kdyby\Doctrine\QueryObject',
+				'dir'				=> '%appDir%/libs/{namespace}/queries'
 			)
 		)
 	);

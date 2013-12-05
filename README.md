@@ -5,6 +5,7 @@ Rozšíření pro generování presenterů, controllerů, entit atd. Generován�
 Rozšíření přidává nové příkazy, které se běžně volají přes konzoli nad **index.php**, konkrétní informace o generování viz níže.
 
 
+
 ## Generování presenteru
 
 ```
@@ -27,3 +28,26 @@ Dále je zde speciální možnost s využitím znaku vykřičníku na začátku 
 
 **Do you add action?**
 Přidat akci do presenteru, například `default` vygeneruje metodu *actionDefault*
+
+
+
+## Generování entit
+
+
+## Generování query objektů
+
+```
+php index.php generate:query
+```
+
+**What's the namespace of class?**
+Namespace query objektu, například při zadání `user` vygeneruje namespace *App\User*
+
+**What's the name of query?**
+Název query, například pro `test` vytvoří třídu `TestQuery`
+
+**Do you add construct argument? Type name space and class type:**
+Přidání povinného parametru v konstruktoru, například při zadání `foo` vygeneruje property *foo*, a zároveň constructor injection pri proměnnou. Při zadání `user \App\User\User` vygeneruje property *user* s typehintem pro *\App\User\User*
+
+**Do you add setter argument? Type name space and class type:**
+Stejné jako při předchozím contructor injection, ale pro setter injection - používá se pro volitelné argumenty.
